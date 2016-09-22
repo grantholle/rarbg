@@ -4,7 +4,7 @@ This is a very simple api wrapper in Node using Promises.
 
 ## Installation
 
-```(bash)
+```bash
 $ npm i rargb --save
 ```
 
@@ -12,7 +12,7 @@ $ npm i rargb --save
 
 There are two methods, `search()` and `list()` that you can use. The `search()` method takes an object of options (see below) for various searching and sorting capabilities.
 
-```(javascript)
+```javascript
 const rargb = require('rargb')
 
 // Searching by various parameters
