@@ -1,0 +1,13 @@
+{
+  "name": "rargb",
+  "version": "0.1.0",
+  "description": "A wrapper for RARGB's api",
+  "main": "index.js",
+  "keywords": [
+    "torrent",
+    "rargb"
+  ],
+  "repository": "",
+  "author": "Grant Holle (https://github.com/grantholle)",
+  "license": "MIT",
+}
