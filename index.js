@@ -106,8 +106,6 @@ module.exports = {
         path: config.path + querystring.stringify(query)
       }
 
-      console.log(req.path)
-
       https.get(req, res => {
         let body = ''
 
