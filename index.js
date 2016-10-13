@@ -95,9 +95,11 @@ module.exports = {
           const delay = 2000 - moment().diff(this.lastRequestTime)
 
           setTimeout(() => {
-            this.sendRequest().then(results => {
-              resolve(results)
-            })
+            this.sendRequest()
+              .then(results => {
+                resolve(results)
+              })
+              .catch(e => reject(e))
           }, delay > 0 ? delay : 0)
         })
     })
