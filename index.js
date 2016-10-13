@@ -2,6 +2,7 @@
 
 const https = require('https'),
       querystring = require('querystring'),
+      moment = require('moment'),
       config = {
         host: 'torrentapi.org',
         path: '/pubapi_v2.php?'
@@ -32,7 +33,9 @@ module.exports = {
     E_BOOKS: 35
   },
 
-  validateToken() {
+  lastRequestTime = moment(),
+
+  validateParams() {
     return new Promise((resolve, reject) => {
       if (!this.query.mode) {
         reject('Invalid query object -- no search mode')
@@ -48,7 +51,7 @@ module.exports = {
         reject('Invalid query object -- search mode invalid')
       }
 
-      setTimeout(resolve, 1000)
+      resolve()
     })
   },
 
@@ -86,15 +89,16 @@ module.exports = {
 
   apiRequest() {
     return new Promise((resolve, reject) => {
-      Promise.all([this.validateToken(), this.getToken()])
+      Promise.all([this.validateParams(), this.getToken()])
         .then(() => {
-
           // There's a 1 request/2 second rate limit
+          const delay = 2000 - moment().diff(this.lastRequestTime)
+
           setTimeout(() => {
             this.sendRequest().then(results => {
               resolve(results)
             })
-          }, 2000)
+          }, delay > 0 ? delay : 0)
         })
     })
   },
@@ -107,6 +111,7 @@ module.exports = {
       }
 
       https.get(req, res => {
+        this.lastRequestTime = moment()
         let body = ''
 
         res.on('data', d => {

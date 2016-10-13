@@ -1,6 +1,6 @@
 {
   "name": "rargb",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A wrapper for RARGB's api",
   "main": "index.js",
   "keywords": [
@@ -9,5 +9,8 @@
   ],
   "repository": "https://github.com/grantholle/rargb",
   "author": "Grant Holle (https://github.com/grantholle)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.15.1"
+  }
 }
