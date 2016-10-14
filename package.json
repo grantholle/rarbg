@@ -1,6 +1,6 @@
 {
   "name": "rargb",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A wrapper for RARGB's api",
   "main": "index.js",
   "keywords": [
