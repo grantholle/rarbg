@@ -33,7 +33,7 @@ module.exports = {
     E_BOOKS: 35
   },
 
-  lastRequestTime = moment(),
+  lastRequestTime: moment(),
 
   validateParams() {
     return new Promise((resolve, reject) => {
