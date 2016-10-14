@@ -10,7 +10,7 @@ $ npm i rargb --save
 
 ## Usage
 
-There are two methods, `search()` and `list()` that you can use. The `search()` method takes an object of options (see below) for various searching and sorting capabilities.
+There are two methods, `search()` and `list()` that you can use. The `search()` method takes an object of options (see below) for various searching and sorting capabilities. Both methods return an array of objects containing `filename`, `category`, and `download` properties, or an error in the case of nothing being found or a different error.
 
 ```javascript
 const rargb = require('rargb')
@@ -22,12 +22,43 @@ rargb.search({
     category: rargb.categories.MOVIES_X264_1080,
     min_seeders: 50
   })
-  .then(response => console.log(response))
+  .then(response => {
+    console.log(response)
+    // Output:
+    // [
+    //   {
+    //     "filename": "Star.Wars.Episode.VII.The.Force.Awakens.2015.1080p.BluRay.H264.AAC-RARBG",
+    //     "category": "Movies/x264/1080",
+    //     "download": "magnet:?xt=urn:btih:..."
+    //   },
+    //   {
+    //     "filename": "Star.Wars.Episode.VII.The.Force.Awakens.2015.1080p.BluRay.x264-Replica",
+    //     "category": "Movies/x264/1080",
+    //     "download": "magnet:?xt=urn:btih:..."
+    //   }
+    // ]
+  })
   .catch(err => console.error(err))
 
 // List recent torrents
 rargb.list()
-  .then(response => console.log(response))
+  .then(response => {
+    console.log(response)
+    // Output:
+    // [
+    //   {
+    //     "filename": "Those.Who.Cant.S02E02.HDTV.x264-AMBIT[rartv]",
+    //     "category": "TV Episodes",
+    //     "download": "magnet:?xt=urn:btih:..."
+    //   },
+    //   {
+    //     "filename": "Those.Who.Cant.S02E02.720p.HDTV.x264-AMBIT[rartv]",
+    //     "category": "TV HD Episodes",
+    //     "download": "magnet:?xt=urn:btih:..."
+    //   }
+    //   ...
+    // ]
+  })
   .catch(err => console.error(err))
 ```
 
@@ -42,7 +73,7 @@ rargb.list()
 ### Categories
 - `category`: The only two string values can be `'movies'` and `'tv'`, but you can use the following constants:
 
-```(javascript)
+```javascript
 rargb.categories.XXX
 rargb.categories.MOVIES_XVID
 rargb.categories.MOVIES_XVID_720

@@ -58,12 +58,14 @@ module.exports = {
   setToken() {
     return this.sendRequest({
       get_token: 'get_token'
-    }).then(response => this.query.token = response.token)
+    }).then(response => this._token = this.query.token = response.token)
   },
 
   getToken() {
-    if (this.query.token) {
-      return new Promise()
+    if (this._token) {
+      return new Promise((resolve, reject) => {
+        resolve()
+      }).then(() => this.query.token = this._token)
     }
 
     return this.setToken()
@@ -97,7 +99,10 @@ module.exports = {
           setTimeout(() => {
             this.sendRequest()
               .then(results => {
-                resolve(results)
+                if (results.torrent_results)
+                  resolve(results.torrent_results)
+                else
+                  reject(results)
               })
               .catch(e => reject(e))
           }, delay > 0 ? delay : 0)
