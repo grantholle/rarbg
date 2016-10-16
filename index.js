@@ -35,20 +35,20 @@ module.exports = {
 
   lastRequestTime: moment(),
 
-  validateParams() {
+  validateParams(query) {
     return new Promise((resolve, reject) => {
-      if (!this.query.mode) {
-        reject('Invalid query object -- no search mode')
-      } else if (this.query.mode === 'search') {
-        if (!this.query.search_string &&
-            !this.query.search_themoviedb &&
-            !this.query.search_tvdb &&
-            !this.query.search_imdb) {
+      if (!query.mode) {
+        return reject('Invalid query object -- no search mode')
+      } else if (query.mode === 'search') {
+        if (!query.search_string &&
+            !query.search_themoviedb &&
+            !query.search_tvdb &&
+            !query.search_imdb) {
 
-          reject('Invalid query object -- no search parameters')
+          return reject('Invalid query object -- no search parameters')
         }
-      } else if (this.query.mode !== 'list') {
-        reject('Invalid query object -- search mode invalid')
+      } else if (query.mode !== 'list') {
+        return reject('Invalid query object -- search mode invalid')
       }
 
       resolve()
@@ -56,19 +56,32 @@ module.exports = {
   },
 
   setToken() {
+    this._setting_token = true
+
     return this.sendRequest({
       get_token: 'get_token'
-    }).then(response => this._token = this.query.token = response.token)
+    }).then(response => {
+      this._token = response.token
+      this._setting_token = false
+    })
   },
 
   getToken() {
-    if (this._token) {
-      return new Promise((resolve, reject) => {
-        resolve()
-      }).then(() => this.query.token = this._token)
-    }
+    if (!this._token && !this._setting_token)
+      return this.setToken()
 
-    return this.setToken()
+    return new Promise((resolve, reject) => {
+      if (this._token) {
+        return resolve()
+      }
+
+      (function waitForToken() {
+        if (!this._setting_token)
+          return resolve()
+
+        setTimeout(waitForToken.bind(this), 100)
+      }).bind(this)()
+    }).then(() => true)
   },
 
   retrieveToken() {
@@ -77,27 +90,26 @@ module.exports = {
 
   search(query) {
     query.mode = 'search'
-    this.query = query
 
-    return this.apiRequest()
+    return this.apiRequest(query)
   },
 
   list(query = {}) {
     query.mode = 'list'
-    this.query = query
 
-    return this.apiRequest()
+    return this.apiRequest(query)
   },
 
-  apiRequest() {
+  apiRequest(query) {
     return new Promise((resolve, reject) => {
-      Promise.all([this.validateParams(), this.getToken()])
+      Promise.all([this.validateParams(query), this.getToken()])
         .then(() => {
           // There's a 1 request/2 second rate limit
           const delay = 2000 - moment().diff(this.lastRequestTime)
+          query.token = this._token
 
           setTimeout(() => {
-            this.sendRequest()
+            this.sendRequest(query)
               .then(results => {
                 if (results.torrent_results)
                   resolve(results.torrent_results)
@@ -110,7 +122,7 @@ module.exports = {
     })
   },
 
-  sendRequest(query = this.query) {
+  sendRequest(query) {
     return new Promise((resolve, reject) => {
       const req = {
         host: config.host,
