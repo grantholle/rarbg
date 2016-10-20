@@ -1,4 +1,4 @@
-# RARGB
+# RARBG
 
 This is a very simple api wrapper in Node using Promises.
 
