@@ -1,13 +1,14 @@
 {
-  "name": "rargb",
+  "name": "rarbg",
   "version": "0.4.0",
-  "description": "A wrapper for RARGB's api",
+  "description": "A wrapper for RARBG's api",
   "main": "index.js",
   "keywords": [
     "torrent",
-    "rargb"
+    "rarbg",
+    "torrent search"
   ],
-  "repository": "https://github.com/grantholle/rargb",
+  "repository": "https://github.com/grantholle/rarbg",
   "author": "Grant Holle (https://github.com/grantholle)",
   "license": "MIT",
   "dependencies": {
