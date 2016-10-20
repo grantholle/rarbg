@@ -5,7 +5,7 @@ This is a very simple api wrapper in Node using Promises.
 ## Installation
 
 ```bash
-$ npm i rargb --save
+$ npm i rarbg --save
 ```
 
 ## Usage
@@ -13,13 +13,13 @@ $ npm i rargb --save
 There are two methods, `search()` and `list()` that you can use. The `search()` method takes an object of options (see below) for various searching and sorting capabilities. Both methods return an array of objects containing `filename`, `category`, and `download` properties, or an error in the case of nothing being found or a different error.
 
 ```javascript
-const rargb = require('rargb')
+const rarbg = require('rarbg')
 
 // Searching by various parameters
-rargb.search({
+rarbg.search({
     search_string: 'star wars',
     sort: 'seeders',
-    category: rargb.categories.MOVIES_X264_1080,
+    category: rarbg.categories.MOVIES_X264_1080,
     min_seeders: 50
   })
   .then(response => {
@@ -41,7 +41,7 @@ rargb.search({
   .catch(err => console.error(err))
 
 // List recent torrents
-rargb.list()
+rarbg.list()
   .then(response => {
     console.log(response)
     // Output:
@@ -74,25 +74,25 @@ rargb.list()
 - `category`: The only two string values can be `'movies'` and `'tv'`, but you can use the following constants:
 
 ```javascript
-rargb.categories.XXX
-rargb.categories.MOVIES_XVID
-rargb.categories.MOVIES_XVID_720
-rargb.categories.MOVIES_X264
-rargb.categories.MOVIES_X264_1080
-rargb.categories.MOVIES_X264_720
-rargb.categories.MOVIES_X264_3D
-rargb.categories.MOVIES_FULL_BD
-rargb.categories.MOVIES_BD_REMUX
-rargb.categories.TV_EPISODES
-rargb.categories.TV_HD_EPISODES
-rargb.categories.MUSIC_MP3
-rargb.categories.MUSIC_FLAC
-rargb.categories.GAMES_PC_ISO
-rargb.categories.GAMES_PC_RIP
-rargb.categories.GAMES_PS3
-rargb.categories.GAMES_XBOX_360
-rargb.categories.SOFTWARE_PC_ISO
-rargb.categories.E_BOOKS
+rarbg.categories.XXX
+rarbg.categories.MOVIES_XVID
+rarbg.categories.MOVIES_XVID_720
+rarbg.categories.MOVIES_X264
+rarbg.categories.MOVIES_X264_1080
+rarbg.categories.MOVIES_X264_720
+rarbg.categories.MOVIES_X264_3D
+rarbg.categories.MOVIES_FULL_BD
+rarbg.categories.MOVIES_BD_REMUX
+rarbg.categories.TV_EPISODES
+rarbg.categories.TV_HD_EPISODES
+rarbg.categories.MUSIC_MP3
+rarbg.categories.MUSIC_FLAC
+rarbg.categories.GAMES_PC_ISO
+rarbg.categories.GAMES_PC_RIP
+rarbg.categories.GAMES_PS3
+rarbg.categories.GAMES_XBOX_360
+rarbg.categories.SOFTWARE_PC_ISO
+rarbg.categories.E_BOOKS
 ```
 
 **Note:** The `category` option only allows for one category, although the api itself allows for more.
