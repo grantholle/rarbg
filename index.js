@@ -34,6 +34,7 @@ module.exports = {
   },
 
   lastRequestTime: moment(),
+  tokenTimestamp: moment('1970-01-01', 'YYYY-MM-DD'),
 
   validateParams(query) {
     return new Promise((resolve, reject) => {
@@ -63,11 +64,12 @@ module.exports = {
     }).then(response => {
       this._token = response.token
       this._setting_token = false
+      this.tokenTimestamp = moment()
     })
   },
 
   getToken() {
-    if (!this._token && !this._setting_token)
+    if (!this._token && !this._setting_token && moment().diff(this.tokenTimestamp, 'minutes') > 15)
       return this.setToken()
 
     return new Promise((resolve, reject) => {
@@ -82,10 +84,6 @@ module.exports = {
         setTimeout(waitForToken.bind(this), 100)
       }).bind(this)()
     }).then(() => true)
-  },
-
-  retrieveToken() {
-    return this.sendRequest({ get_token: 'get_token' })
   },
 
   search(query) {
