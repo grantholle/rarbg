@@ -69,7 +69,7 @@ module.exports = {
   },
 
   getToken() {
-    if (!this._token && !this._setting_token && moment().diff(this.tokenTimestamp, 'minutes') > 15)
+    if (!this._token && !this._setting_token && moment().diff(this.tokenTimestamp, 'minutes') > 14)
       return this.setToken()
 
     return new Promise((resolve, reject) => {

@@ -1,6 +1,6 @@
 {
   "name": "rarbg",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A wrapper for RARBG's api",
   "main": "index.js",
   "keywords": [
