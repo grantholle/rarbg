@@ -1,12 +1,12 @@
 'use strict'
 
 const https = require('https'),
-      querystring = require('querystring'),
-      moment = require('moment'),
-      config = {
-        host: 'torrentapi.org',
-        path: '/pubapi_v2.php?'
-      }
+  querystring = require('querystring'),
+  moment = require('moment'),
+  config = {
+    host: 'torrentapi.org',
+    path: '/pubapi_v2.php?'
+  }
 
 
 module.exports = {
@@ -40,18 +40,16 @@ module.exports = {
     return new Promise((resolve, reject) => {
       if (!query.mode) {
         return reject('Invalid query object -- no search mode')
-      } else if (query.mode === 'search') {
-        if (!query.search_string &&
-            !query.search_themoviedb &&
-            !query.search_tvdb &&
-            !query.search_imdb) {
+      }
+      else if (query.mode === 'search') {
+        if (!query.category && !query.search_string && !query.search_themoviedb && !query.search_tvdb && !query.search_imdb) {
 
           return reject('Invalid query object -- no search parameters')
         }
-      } else if (query.mode !== 'list') {
+      }
+      else if (query.mode !== 'list') {
         return reject('Invalid query object -- search mode invalid')
       }
-
       resolve()
     })
   },
@@ -126,7 +124,6 @@ module.exports = {
         host: config.host,
         path: config.path + querystring.stringify(query)
       }
-
       https.get(req, res => {
         this.lastRequestTime = moment()
         let body = ''
