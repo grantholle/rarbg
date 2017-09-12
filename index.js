@@ -4,36 +4,36 @@ const https = require('https')
 const moment = require('moment')
 const { stringify } = require('querystring')
 
-module.exports = {
-  config: {
-    host: 'torrentapi.org',
-    path: '/pubapi_v2.php?'
-  },
-
-  categories: {
-    XXX: 4,
-    MOVIES_XVID: 14,
-    MOVIES_XVID_720: 48,
-    MOVIES_X264: 17,
-    MOVIES_X264_1080: 44,
-    MOVIES_X264_720: 45,
-    MOVIES_X264_3D: 47,
-    MOVIES_FULL_BD: 42,
-    MOVIES_BD_REMUX: 46,
-    TV_EPISODES: 18,
-    TV_HD_EPISODES: 41,
-    MUSIC_MP3: 23,
-    MUSIC_FLAC: 25,
-    GAMES_PC_ISO: 27,
-    GAMES_PC_RIP: 28,
-    GAMES_PS3: 40,
-    GAMES_XBOX_360: 32,
-    SOFTWARE_PC_ISO: 33,
-    E_BOOKS: 35
-  },
-
-  lastRequestTime: moment(),
-  tokenTimestamp: moment('1970-01-01', 'YYYY-MM-DD'),
+module.exports = class RarbgApi {
+  constructor () {
+    this.config = {
+      host: 'torrentapi.org',
+      path: '/pubapi_v2.php?'
+    }
+    this.categories = {
+      XXX: 4,
+      MOVIES_XVID: 14,
+      MOVIES_XVID_720: 48,
+      MOVIES_X264: 17,
+      MOVIES_X264_1080: 44,
+      MOVIES_X264_720: 45,
+      MOVIES_X264_3D: 47,
+      MOVIES_FULL_BD: 42,
+      MOVIES_BD_REMUX: 46,
+      TV_EPISODES: 18,
+      TV_HD_EPISODES: 41,
+      MUSIC_MP3: 23,
+      MUSIC_FLAC: 25,
+      GAMES_PC_ISO: 27,
+      GAMES_PC_RIP: 28,
+      GAMES_PS3: 40,
+      GAMES_XBOX_360: 32,
+      SOFTWARE_PC_ISO: 33,
+      E_BOOKS: 35
+    }
+    this.lastRequestTime = moment()
+    this.tokenTimestamp = moment('1970-01-01', 'YYYY-MM-DD')
+  }
 
   validateParams (query) {
     return new Promise((resolve, reject) => {
@@ -55,7 +55,7 @@ module.exports = {
 
       resolve()
     })
-  },
+  }
 
   setToken () {
     return this.sendRequest({
@@ -64,7 +64,7 @@ module.exports = {
       this._token = res.token
       this.tokenTimestamp = moment()
     })
-  },
+  }
 
   getToken () {
     if (
@@ -75,17 +75,17 @@ module.exports = {
     }
 
     return Promise.resolve()
-  },
+  }
 
   search (query) {
     query.mode = 'search'
     return this.apiRequest(query)
-  },
+  }
 
   list (query = {}) {
     query.mode = 'list'
     return this.apiRequest(query)
-  },
+  }
 
   apiRequest (query) {
     return new Promise((resolve, reject) => {
@@ -108,7 +108,7 @@ module.exports = {
         }, delay)
       }).catch(err => reject(err))
     })
-  },
+  }
 
   sendRequest (query) {
     return new Promise((resolve, reject) => {

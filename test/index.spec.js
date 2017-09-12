@@ -1,9 +1,15 @@
 'use strict'
 
 const { expect } = require('chai')
-const rarbg = require('..')
+const RarbgApi = require('..')
 
 describe('rarbg', () => {
+  let rarbg
+
+  before(() => {
+    rarbg = new RarbgApi()
+  })
+
   function testOutputAttributes (output) {
     expect(output).to.be.an('array')
 
