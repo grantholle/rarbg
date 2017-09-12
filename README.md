@@ -1,5 +1,10 @@
 # RARBG
 
+[![Build Status](https://travis-ci.org/ChrisAlderson/rarbg.svg)](https://travis-ci.org/ChrisAlderson/rarbg)
+[![Coverage Status](https://coveralls.io/repos/github/ChrisAlderson/rarbg/badge.svg?branch=master)](https://coveralls.io/github/ChrisAlderson/rarbg?branch=master)
+[![dependencies Status](https://david-dm.org/ChrisAlderson/rarbg/status.svg)](https://david-dm.org/ChrisAlderson/rarbg)
+[![devDependencies Status](https://david-dm.org/ChrisAlderson/rarbg/dev-status.svg)](https://david-dm.org/ChrisAlderson/rarbg?type=dev)
+
 This is a very simple api wrapper in Node using Promises.
 
 ## Installation
