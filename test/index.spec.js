@@ -21,13 +21,27 @@ describe('rarbg', () => {
       sort: 'seeders',
       category: rarbg.categories.MOVIES_X264_1080,
       min_seeders: 50
-    }).then(response => {
-      testOutputAttributes(response)
+    }).then(res => {
+      testOutputAttributes(res)
       done()
     }).catch(done)
   })
 
-  it('should throw an error when ', done => {
+  it('should not find any torrents', done => {
+    rarbg.search({
+      search_string: 'this movie doesn\'t exists',
+      sort: 'seeders',
+      category: rarbg.categories.MOVIES_X264_1080,
+      min_seeders: 50
+    }).then(done).catch(err => {
+      expect(err).to.be.an('Error')
+      expect(err.message).to.equal('No results found!')
+
+      done()
+    })
+  })
+
+  it('should throw an error when the wrong params are given', done => {
     rarbg.search({
       search_strin: 'star wars'
     }).then(done)
@@ -40,8 +54,8 @@ describe('rarbg', () => {
   })
 
   it('should list the recent torrent', done => {
-    rarbg.list().then(response => {
-      testOutputAttributes(response)
+    rarbg.list().then(res => {
+      testOutputAttributes(res)
       done()
     }).catch(done)
   })
