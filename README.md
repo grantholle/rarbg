@@ -10,6 +10,16 @@ $ npm i rarbg --save
 
 ## Usage
 
+### Initialize
+```javascript
+const RarbgApi = require('rarbg')
+
+// Create a new instance of the module.
+const rarbg = new RarbgApi()
+```
+
+### Methods
+
 There are two methods, `search()` and `list()` that you can use. The `search()` method takes an object of options (see below) for various searching and sorting capabilities. Both methods return an array of objects containing `filename`, `category`, and `download` properties, or an error in the case of nothing being found or a different error.
 
 ```javascript
