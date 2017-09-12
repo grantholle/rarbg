@@ -11,6 +11,11 @@
   "repository": "https://github.com/grantholle/rarbg",
   "author": "Grant Holle (https://github.com/grantholle)",
   "license": "MIT",
+  "scripts": {
+    "coveralls": "cat ./coverage/lcov.info | node ./node_modules/.bin/coveralls",
+    "lint": "./node_modules/.bin/standard --env mocha",
+    "test": "./node_modules/.bin/nyc --reporter=text --reporter=lcov ./node_modules/.bin/mocha --timeout 15000 --reporter spec test/**"
+  },
   "dependencies": {
     "moment": "^2.15.1"
   }
