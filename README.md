@@ -1,5 +1,10 @@
 # RARBG
 
+[![Build Status](https://travis-ci.org/ChrisAlderson/rarbg.svg)](https://travis-ci.org/ChrisAlderson/rarbg)
+[![Coverage Status](https://coveralls.io/repos/github/ChrisAlderson/rarbg/badge.svg?branch=master)](https://coveralls.io/github/ChrisAlderson/rarbg?branch=master)
+[![dependencies Status](https://david-dm.org/ChrisAlderson/rarbg/status.svg)](https://david-dm.org/ChrisAlderson/rarbg)
+[![devDependencies Status](https://david-dm.org/ChrisAlderson/rarbg/dev-status.svg)](https://david-dm.org/ChrisAlderson/rarbg?type=dev)
+
 This is a very simple api wrapper in Node using Promises.
 
 ## Installation
@@ -9,6 +14,16 @@ $ npm i rarbg --save
 ```
 
 ## Usage
+
+### Initialize
+```javascript
+const RarbgApi = require('rarbg')
+
+// Create a new instance of the module.
+const rarbg = new RarbgApi()
+```
+
+### Methods
 
 There are two methods, `search()` and `list()` that you can use. The `search()` method takes an object of options (see below) for various searching and sorting capabilities. Both methods return an array of objects containing `filename`, `category`, and `download` properties, or an error in the case of nothing being found or a different error.
 
