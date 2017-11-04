@@ -90,6 +90,9 @@ rarbg.categories.MOVIES_X264
 rarbg.categories.MOVIES_X264_1080
 rarbg.categories.MOVIES_X264_720
 rarbg.categories.MOVIES_X264_3D
+rarbg.categories.MOVIES_X264_4K
+rarbg.categories.MOVIES_X265_4K
+rarbg.categories.MOVIES_X265_4K_HDR
 rarbg.categories.MOVIES_FULL_BD
 rarbg.categories.MOVIES_BD_REMUX
 rarbg.categories.TV_EPISODES
