@@ -125,10 +125,19 @@ module.exports = class RarbgApi {
         let body = ''
 
         res.setEncoding('utf8')
+
         res.on('data', d => {
           body += d
         })
-        res.on('end', () => resolve(JSON.parse(body)))
+
+        res.on('end', () => {
+          try {
+            const parsed = JSON.parse(body)
+            resolve(parsed)
+          } catch (err) {
+            reject(err)
+          }
+        })
       }).on('error', err => reject(err))
     })
   }
