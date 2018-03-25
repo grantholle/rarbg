@@ -5,11 +5,14 @@ const moment = require('moment')
 const { stringify } = require('querystring')
 
 module.exports = class RarbgApi {
-  constructor () {
-    this.config = {
+  constructor (config) {
+    this.config = Object.assign({
       host: 'torrentapi.org',
-      path: '/pubapi_v2.php?'
-    }
+      path: '/pubapi_v2.php?',
+      app_id: 'rarbg_npm',
+      user_agent: 'https://github.com/grantholle/rarbg'
+    }, config)
+
     this.categories = {
       XXX: 4,
       MOVIES_XVID: 14,
@@ -115,9 +118,13 @@ module.exports = class RarbgApi {
 
   sendRequest (query) {
     return new Promise((resolve, reject) => {
+      query.app_id = this.config.app_id
       const req = {
         host: this.config.host,
-        path: this.config.path + stringify(query)
+        path: this.config.path + stringify(query),
+        headers: {
+          'User-Agent': this.config.user_agent
+        }
       }
 
       https.get(req, res => {

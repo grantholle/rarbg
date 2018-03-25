@@ -18,6 +18,15 @@ const RarbgApi = require('rarbg')
 // Create a new instance of the module.
 const rarbg = new RarbgApi()
 ```
+You can pass the configuration by the constructor
+```javascript
+const rarbg = new RarbgApi({
+  host: 'torrentapi.org',
+  path: '/pubapi_v2.php?',
+  app_id: 'my_application',
+  user_agent: 'My Application 0.0.1'
+})
+```
 
 ### Methods
 
