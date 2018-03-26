@@ -95,7 +95,7 @@ module.exports = class RarbgApi {
 
   apiRequest (query) {
     return new Promise((resolve, reject) => {
-      return Promise.all([
+      Promise.all([
         this.validateParams(query),
         this.getToken()
       ]).then(() => {
@@ -103,16 +103,16 @@ module.exports = class RarbgApi {
         const delay = 2000 - moment().diff(this.lastRequestTime)
         query.token = this._token
 
-        return setTimeout(() => {
-          return this.sendRequest(query).then(({ torrent_results }) => {
+        setTimeout(() => {
+          this.sendRequest(query).then(({ torrent_results }) => {
             if (!torrent_results) { // eslint-disable-line camelcase
               return reject(new Error('No results found!'))
             }
 
-            return resolve(torrent_results)
-          }).catch(err => reject(err))
+            resolve(torrent_results)
+          }).catch(reject)
         }, delay)
-      }).catch(err => reject(err))
+      }).catch(reject)
     })
   }
 
@@ -145,7 +145,7 @@ module.exports = class RarbgApi {
             reject(err)
           }
         })
-      }).on('error', err => reject(err))
+      }).on('error', reject)
     })
   }
 }

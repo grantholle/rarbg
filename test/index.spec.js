@@ -35,10 +35,8 @@ describe('rarbg', () => {
 
   it('should not find any torrents', done => {
     rarbg.search({
-      search_string: 'this movie doesn\'t exists',
-      sort: 'seeders',
-      category: rarbg.categories.MOVIES_X264_1080,
-      min_seeders: 50
+      search_string: `This movie doesn't exist`,
+      category: rarbg.categories.MOVIES_X264_1080
     }).then(done).catch(err => {
       expect(err).to.be.an('Error')
       expect(err.message).to.equal('No results found!')

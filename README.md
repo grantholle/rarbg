@@ -1,6 +1,6 @@
 # RARBG
 
-This is a very simple api wrapper in Node using Promises.
+This is a very simple [rarbg api](https://torrentapi.org/apidocs_v2.txt) wrapper in Node using Promises.
 
 ## Installation
 
@@ -18,7 +18,9 @@ const RarbgApi = require('rarbg')
 // Create a new instance of the module.
 const rarbg = new RarbgApi()
 ```
-You can pass the configuration by the constructor
+
+You can pass the configuration by the constructor:
+
 ```javascript
 const rarbg = new RarbgApi({
   host: 'torrentapi.org',
@@ -131,4 +133,4 @@ rarbg.categories.E_BOOKS
 
 ## License
 
-MIT
+[MIT](LICENSE.txt)
