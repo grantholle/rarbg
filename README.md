@@ -1,6 +1,6 @@
 # RARBG
 
-[![npm](https://img.shields.io/npm/dw/localeval.svg?style=for-the-badge)](https://www.npmjs.com/package/rarbg)
+[![npm](https://img.shields.io/npm/dw/rarbg.svg?style=for-the-badge)](https://www.npmjs.com/package/rarbg)
 
 This is a very simple [rarbg api](https://torrentapi.org/apidocs_v2.txt) wrapper in Node using Promises.
 
