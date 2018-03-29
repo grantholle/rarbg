@@ -33,6 +33,18 @@ describe('rarbg', () => {
     }).catch(done)
   })
 
+  it('should search for torrents in multiple categories', done => {
+    rarbg.search({
+      search_string: 'star wars',
+      sort: 'seeders',
+      category: [rarbg.categories.MOVIES_X264_1080, rarbg.categories.MOVIES_X264_720],
+      min_seeders: 50
+    }).then(res => {
+      testOutputAttributes(res)
+      done()
+    }).catch(done)
+  })
+
   it('should not find any torrents', done => {
     rarbg.search({
       search_string: `This movie doesn't exist`,

@@ -55,15 +55,20 @@ module.exports = class RarbgApi {
     return new Promise((resolve, reject) => {
       if (!query.mode) {
         return reject(new Error('Invalid query object -- no search mode'))
-      } else if (query.mode === 'search') {
+      }
+
+      if (query.mode === 'search') {
         if (
           !query.search_string &&
           !query.search_themoviedb &&
           !query.search_tvdb &&
           !query.search_imdb
         ) {
-          const err = new Error('Invalid query object -- no search parameters')
-          return reject(err)
+          return reject(new Error('Invalid query object -- no search parameters'))
+        }
+
+        if (Array.isArray(query.category)) {
+          query.category = query.category.join(';')
         }
       } else if (query.mode !== 'list') {
         return reject(new Error('Invalid query object -- search mode invalid'))

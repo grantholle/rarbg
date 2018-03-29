@@ -109,9 +109,15 @@ rarbg.categories.GAMES_PS3
 rarbg.categories.GAMES_XBOX_360
 rarbg.categories.SOFTWARE_PC_ISO
 rarbg.categories.E_BOOKS
-```
 
-**Note:** The `category` option only allows for one category, although the api itself allows for more.
+// `category` can be an array to search in more than one category
+rarbg.search({
+  search_string: 'star wars',
+  category: [rarbg.categories.MOVIES_X264_1080, rarbg.categories.MOVIES_X264_720]
+}).then(res => {
+  //
+})
+```
 
 ### Sorting
 - `sort`: Possible values are `'seeders'`, `'leechers'`, or `'last'`
