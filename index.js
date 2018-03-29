@@ -5,6 +5,11 @@ const moment = require('moment')
 const { stringify } = require('querystring')
 
 module.exports = class RarbgApi {
+  /**
+   * Construct a new RarbgApi class
+   *
+   * @param {Object} config The configuration object to use when interacting with the api
+   */
   constructor (config) {
     this.config = Object.assign({
       host: 'torrentapi.org',
@@ -41,6 +46,11 @@ module.exports = class RarbgApi {
     this.tokenTimestamp = moment('1970-01-01', 'YYYY-MM-DD')
   }
 
+  /**
+   * Validates the parameters so it can correctly interact with the api
+   *
+   * @param {Object} query The object to use against the api
+   */
   validateParams (query) {
     return new Promise((resolve, reject) => {
       if (!query.mode) {
@@ -63,6 +73,9 @@ module.exports = class RarbgApi {
     })
   }
 
+  /**
+   * Sets the token from the api so requests can be made
+   */
   setToken () {
     return this.sendRequest({
       get_token: 'get_token'
@@ -72,6 +85,9 @@ module.exports = class RarbgApi {
     })
   }
 
+  /**
+   * Either retrieves a saved valid saved token or retrieves a new one
+   */
   getToken () {
     if (
       (!this._token && !this._setting_token) ||
@@ -83,16 +99,31 @@ module.exports = class RarbgApi {
     return Promise.resolve()
   }
 
+  /**
+   * Performs a search of rarbg
+   *
+   * @param {Object} query The search parameters
+   */
   search (query) {
     query.mode = 'search'
     return this.apiRequest(query)
   }
 
+  /**
+   * Lists recent torrents from rarbg
+   *
+   * @param {Object} query The listing parameters
+   */
   list (query = {}) {
     query.mode = 'list'
     return this.apiRequest(query)
   }
 
+  /**
+   * Makes a request to the api
+   *
+   * @param {Object} query The parameters to send to make the request
+   */
   apiRequest (query) {
     return new Promise((resolve, reject) => {
       Promise.all([
@@ -116,6 +147,11 @@ module.exports = class RarbgApi {
     })
   }
 
+  /**
+   * Sends an http request to the host
+   *
+   * @param {Object} query The properties to be encoded in the api call
+   */
   sendRequest (query) {
     return new Promise((resolve, reject) => {
       query.app_id = this.config.app_id
