@@ -1,5 +1,7 @@
 # RARBG
 
+[![npm](https://img.shields.io/npm/dw/localeval.svg?style=for-the-badge)](https://www.npmjs.com/package/rarbg)
+
 This is a very simple [rarbg api](https://torrentapi.org/apidocs_v2.txt) wrapper in Node using Promises.
 
 ## Installation
@@ -10,18 +12,13 @@ $ npm i rarbg --save
 
 ## Usage
 
-### Initialize
-
 ```javascript
 const RarbgApi = require('rarbg')
 
-// Create a new instance of the module.
+// Create a new instance of the module
 const rarbg = new RarbgApi()
-```
 
-You can pass the configuration by the constructor:
-
-```javascript
+// Or create a new instance with different configuration
 const rarbg = new RarbgApi({
   host: 'torrentapi.org',
   path: '/pubapi_v2.php?',
@@ -41,8 +38,7 @@ rarbg.search({
     sort: 'seeders',
     category: rarbg.categories.MOVIES_X264_1080,
     min_seeders: 50
-  })
-  .then(response => {
+  }).then(response => {
     console.log(response)
     // Output:
     // [
@@ -57,12 +53,10 @@ rarbg.search({
     //     "download": "magnet:?xt=urn:btih:..."
     //   }
     // ]
-  })
-  .catch(err => console.error(err))
+  }).catch(console.error)
 
 // List recent torrents
-rarbg.list()
-  .then(response => {
+rarbg.list().then(response => {
     console.log(response)
     // Output:
     // [
@@ -78,8 +72,7 @@ rarbg.list()
     //   }
     //   ...
     // ]
-  })
-  .catch(err => console.error(err))
+  }).catch(console.error)
 ```
 
 ## Options
