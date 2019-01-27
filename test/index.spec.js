@@ -1,5 +1,6 @@
 'use strict'
 
+/* global it, describe, before */
 const { expect } = require('chai')
 const RarbgApi = require('..')
 
