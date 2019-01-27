@@ -180,7 +180,6 @@ module.exports = class RarbgApi {
 
         res.on('end', () => {
           try {
-            console.log(body)
             const parsed = JSON.parse(body)
             resolve(parsed)
           } catch (err) {
