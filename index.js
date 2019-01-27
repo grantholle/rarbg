@@ -15,7 +15,7 @@ module.exports = class RarbgApi {
       host: 'torrentapi.org',
       path: '/pubapi_v2.php?',
       app_id: 'rarbg_npm',
-      user_agent: 'https://github.com/grantholle/rarbg'
+      user_agent: 'grantholle/rarbg'
     }, config)
 
     this.categories = {
@@ -164,7 +164,7 @@ module.exports = class RarbgApi {
         host: this.config.host,
         path: this.config.path + stringify(query),
         headers: {
-          'User-Agent': this.config.user_agent
+          'user-agent': this.config.user_agent
         }
       }
 
@@ -180,6 +180,7 @@ module.exports = class RarbgApi {
 
         res.on('end', () => {
           try {
+            console.log(body)
             const parsed = JSON.parse(body)
             resolve(parsed)
           } catch (err) {
