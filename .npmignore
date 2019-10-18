@@ -35,3 +35,6 @@ examples
 test
 .vscode
 .nyc_output
+.travis.yml
+LICENSE.txt
+README.md
