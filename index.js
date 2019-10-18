@@ -33,6 +33,7 @@ module.exports = class RarbgApi {
       MOVIES_BD_REMUX: 46,
       TV_EPISODES: 18,
       TV_HD_EPISODES: 41,
+      TV_UHD_EPISODES: 49,
       MUSIC_MP3: 23,
       MUSIC_FLAC: 25,
       GAMES_PC_ISO: 27,
@@ -40,7 +41,7 @@ module.exports = class RarbgApi {
       GAMES_PS3: 40,
       GAMES_XBOX_360: 32,
       SOFTWARE_PC_ISO: 33,
-      E_BOOKS: 35
+      GAMES_PS4: 53
     }
     this.lastRequestTime = moment()
     this.tokenTimestamp = moment('1970-01-01', 'YYYY-MM-DD')
