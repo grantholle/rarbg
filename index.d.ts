@@ -26,7 +26,7 @@ interface RequestParams {
 }
 
 declare class Rarbg {
-  constructor (config: ConfigSettings)
+  constructor (config?: ConfigSettings)
   search (params: RequestParams)
   list (params?: RequestParams)
 
