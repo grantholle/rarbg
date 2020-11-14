@@ -45,6 +45,7 @@ declare class Rarbg {
     MOVIES_BD_REMUX: 46,
     TV_EPISODES: 18,
     TV_HD_EPISODES: 41,
+    TV_UHD_EPISODES: 49,
     MUSIC_MP3: 23,
     MUSIC_FLAC: 25,
     GAMES_PC_ISO: 27,
@@ -52,6 +53,6 @@ declare class Rarbg {
     GAMES_PS3: 40,
     GAMES_XBOX_360: 32,
     SOFTWARE_PC_ISO: 33,
-    E_BOOKS: 35
+    GAMES_PS4: 53
   }
 }
