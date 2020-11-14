@@ -16,7 +16,7 @@
     "test": "./node_modules/.bin/nyc --reporter=text --reporter=lcov ./node_modules/.bin/mocha --timeout 15000 --reporter spec test/**"
   },
   "dependencies": {
-    "moment": "^2.22.2"
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
